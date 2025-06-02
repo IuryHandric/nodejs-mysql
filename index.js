@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const conn = require('./db')
 
 const app = express()
 
@@ -12,7 +13,6 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-const conn = require('./db')
 
 conn.connect((err) => {
 
