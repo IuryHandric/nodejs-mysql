@@ -38,13 +38,27 @@ router.get('/books', (req, res) => {
         }
 
         const books = data
-        console.log(books)
+        res.render('books', { books })
 
-        res.render('books', {books})
+    })
+})
+
+router.get('/books/:id', (req, res) => {
+    const id = req.params.id
+    const sqlWhere = `SELECT * FROM books where id = ${id}`
+
+    conn.query(sqlWhere, (err, data) => {
+        if (err) {
+            console.log(err)
+            return
+        }
+        // Pegando a posição do primeiro registro
+        const book = data[0];
+
+        res.render('book', { book })
 
     })
 
 })
-
 
 module.exports = router;

@@ -3,9 +3,8 @@
 <div class="books-container">
     {{#each books}}
         <div>
-            <p>#{{this.id}} - <span class="bold">{{this.title}}</span> - {{this.pages}} páginas</p>
+            <p>#{{this.id}} - 
+            <span class="bold"><a href="/books/{{this.id}}">{{this.title}}</a></span> - {{this.pages}} páginas</p>
         </div>
     {{/each}}
 </div>
-
-<a href="/"><button>Insira um novo livro</button></a>
