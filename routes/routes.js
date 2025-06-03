@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.render('home')
 })
 
-// INSERT - VERBO POST
+// INSERT - VERBO CREATE
 
 router.post('/books/insertbook', (req, res) => {
 
@@ -106,6 +106,25 @@ router.post('/books/updatebook', (req, res) => {
 
 })
 
+// Deletando dados - VERBO DELETE
+
+router.post('/books/remove/:id', (req, res) => {
+
+    const id = req.params.id
+
+    const sqlDelete = `DELETE FROM books WHERE id = ${id}`
+
+    conn.query(sqlDelete, (err) => {
+        if(err) {
+            console.log(err)
+            return
+        }
+
+        res.redirect('/books');
+    })
+
+
+})
 
 
 module.exports = router;
