@@ -23,10 +23,6 @@ app.use(express.json());
 
 app.use('/', routersPublics);
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
 conn.connect((err) => {
 
     if (err) {
