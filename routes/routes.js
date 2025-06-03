@@ -38,6 +38,9 @@ router.get('/books', (req, res) => {
         }
 
         const books = data
+
+        console.log(books)
+
         res.render('books', { books })
 
     })
@@ -57,6 +60,21 @@ router.get('/books/:id', (req, res) => {
 
         res.render('book', { book })
 
+    })
+})
+
+router.get('/books/edit/:id', (req, res) => {
+    const id = req.params.id;
+
+    const sqlEdit = `SELECT * FROM books WHERE id = ${id}`
+
+    conn.query(sqlEdit, (err, data) => {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const book = data[0]
+        res.render('editbook', { book });
     })
 
 })
