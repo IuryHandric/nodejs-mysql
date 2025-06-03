@@ -1,7 +1,5 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const conn = require('./db')
-
 const app = express()
 
 const routersPublics = require('./routes/routes')
@@ -23,13 +21,6 @@ app.use(express.json());
 
 app.use('/', routersPublics);
 
-conn.connect((err) => {
-
-    if (err) {
-        console.log(err)
-    }
-    console.log('Conectou ao Mysql!')
-    app.listen(3000, () => console.log('Servidor rodadndo na porta http://localhost:3000'))
-})
+app.listen(3000, () => console.log('Servidor rodadndo na porta http://localhost:3000'))
 
 

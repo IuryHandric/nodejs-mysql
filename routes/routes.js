@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const conn = require('../db')
+const pool = require('../db')
 
 router.get('/', (req, res) => {
     res.render('home')
@@ -15,7 +15,7 @@ router.post('/books/insertbook', (req, res) => {
     // Mudar para placeholders
     const sqlInsert = `INSERT INTO books (title, pages) VALUES ('${title}', '${pageqty}')`
 
-    conn.query(sqlInsert, (err) => {
+    pool.query(sqlInsert, (err) => {
         if (err) {
             console.log(err)
         }
@@ -32,7 +32,7 @@ router.get('/books', (req, res) => {
     // Mudar para placeholders
     const sqlSelect = "SELECT * FROM books";
 
-    conn.query(sqlSelect, (err, data) => {
+    pool.query(sqlSelect, (err, data) => {
         if (err) {
             console.log(err)
             return
@@ -54,7 +54,7 @@ router.get('/books/:id', (req, res) => {
     // Mudar para placeholders
     const sqlWhere = `SELECT * FROM books where id = ${id}`
 
-    conn.query(sqlWhere, (err, data) => {
+    pool.query(sqlWhere, (err, data) => {
         if (err) {
             console.log(err)
             return
@@ -74,7 +74,7 @@ router.get('/books/edit/:id', (req, res) => {
     // Mudar para placeholders
     const sqlEdit = `SELECT * FROM books WHERE id = ${id}`
 
-    conn.query(sqlEdit, (err, data) => {
+    pool.query(sqlEdit, (err, data) => {
         if (err) {
             console.log(err)
             return
@@ -94,7 +94,7 @@ router.post('/books/updatebook', (req, res) => {
     // Mudar para placeholders
     const sqlUpdate = `UPDATE books SET title = '${title}', pages = '${pagesqty}' WHERE id = ${id}`
 
-    conn.query(sqlUpdate, (err) => {
+    pool.query(sqlUpdate, (err) => {
         if(err) {
             console.log(err)
             return
@@ -114,7 +114,7 @@ router.post('/books/remove/:id', (req, res) => {
 
     const sqlDelete = `DELETE FROM books WHERE id = ${id}`
 
-    conn.query(sqlDelete, (err) => {
+    pool.query(sqlDelete, (err) => {
         if(err) {
             console.log(err)
             return

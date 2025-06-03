@@ -1,10 +1,11 @@
 const mysql = require('mysql');
 
-const conn = mysql.createConnection({
+const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'nodemysql'
+    database: 'nodemysql',
+    connectionLimit: 10
 })
 
-module.exports = conn;
+module.exports = pool;
